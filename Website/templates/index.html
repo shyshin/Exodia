@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+  </head>
+  <body>
+    <h1>Recorder</h1>
+    <div id="controls">
+      <button id="recordButton">Record</button>
+      <button id="pauseButton" disabled>Pause</button>
+      <button id="stopButton" disabled>Stop</button>
+    </div>
+
+    <div id="formats">Format: start recording to see sample rate</div>
+    <p><strong>Recordings:</strong></p>
+    <ol id="recordingsList"></ol>
+
+    <!-- 显示语音识别后的文本 -->
+    <div>
+      <h2>Recognized Text:</h2>
+      <textarea id="recognizedText" rows="4" cols="50" readonly></textarea>
+    </div>
+
+    <!-- 音频播放器 -->
+    <div>
+      <h2>Audio Playback:</h2>
+      <audio id="audioPlayer" controls style="display:none;">
+        <source id="audioSource" src="" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+    <script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <script>
+      // 初始化socket连接
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+      // 监听后端发送的识别文本
+      socket.on('recognized_text', function(data) {
+      console.log('Received recognized_text:', data);  // 添加调试日志
+      document.getElementById('recognizedText').value = data.text;
+      });
+
+
+      // 监听后端的音频播放请求并更新音频播放器
+      socket.on('play_audio', function(data) {
+        console.log('Received play_audio:', data);  // 添加调试日志
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioSource = document.getElementById('audioSource');
+        // 停止当前播放的音频
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+
+        audioSource.src = data.audio_url;
+        audioPlayer.style.display = 'block';  // 显示音频播放器
+        audioPlayer.load();  // 重新加载音频
+        audioPlayer.play();  // 自动播放音频
+      });
+    </script>
+  </body>
+</html>
