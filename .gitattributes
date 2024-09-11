@@ -1,0 +1,2 @@
+MusicWorker/weights/added_IVF617_Flat_nprobe_1_SiriVT_v1.index filter=lfs diff=lfs merge=lfs -text
+MusicWorker/weights/SiriVT.pth filter=lfs diff=lfs merge=lfs -text
