@@ -181,3 +181,6 @@ neon-tts-plugin-coqui
 #maturin
 #git+https://github.com/microsoft/DeepSpeed.git@v0.8.0
 pytube
+huggingface_hub==0.22.2
+pinecone-client==5.0.0
+sentence_transformers
