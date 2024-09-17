@@ -12,7 +12,7 @@ from TTS.api import TTS
 # 获取 HuggingFace 的 API Token
 client = InferenceClient(
     "meta-llama/Meta-Llama-3-8B-Instruct",
-    token="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"
+    token=os.getenv('hf_token')
     #token=os.getenv('hf_token'),
 )
 
@@ -33,7 +33,7 @@ def process_audio(audio_data):
     buf.close()
 
     API_URL = "https://api-inference.huggingface.co/models/openai/whisper-large-v2"
-    headers = {"Authorization": "Bearer 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"}
+    headers = {"Authorization": f"Bearer {os.getenv('hf_token')}"}
 
     def query(wav_data):
         response = requests.post(API_URL, headers=headers, data=wav_data)
