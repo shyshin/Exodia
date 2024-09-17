@@ -47,8 +47,7 @@ We have used the following music samples for our AI singing feature:
 | Avicii - Wake Me Up | [Grafitte SoundCloud](https://soundcloud.com/graffite) | 8 | Wikipedia description of song |
 
 All of these values except The Source are stored in **Azure Cosmos DB** which also stores the vector embedding of descriptions. The source are stored in an object store. Vector similarity is calculated between the user query and all the songs in the cosmos db. The most relevant song is retrieved from the object store and passed to RVC Transformer. 
-
-As mentioned in the Master node, the Siri Voice Model is used and the song is converted to Siri voice. The `octave` value is used to control the pitch of RVC. Since AI voice is female, songs with male voices need to be converted to higher pitched voice. For songs with female voices like `Hakuna Matata`, `octave` is kept as 0.
+ The `octave` value is used to control the pitch of RVC. Since AI voice is female, songs with male voices need to be converted to higher pitched voice. For songs with female voices like `Hakuna Matata`, `octave` is kept as 0.
 
 Music worker takes in user query and returns the audio file of the voice AI sung song.
 
