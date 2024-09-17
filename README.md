@@ -7,6 +7,9 @@ There are 3 Nodes that work for the whole AI agent:
 2. Movies Worker Node
 3. Music Worker Node
 
+Architecture diagram:
+![architecture](https://github.com/user-attachments/assets/d42b1c0c-acb8-44e3-ab97-7d47d7ce1290)
+
 ## Exodia Master Node
 ### Automatic Speech Recognition (ASR) Module
 **Model**: `openai/whisper-large-v2`  
@@ -60,6 +63,6 @@ Music worker takes in user query and returns the audio file of the voice AI sung
 ## Disclaimer
 The authors and contributors of this project do not endorse or encourage any misuse or unethical use of this software. Any use of this software for purposes other than those intended is solely at the user's own risk. The authors and contributors shall not be held responsible for any damages or liabilities arising from the use of this demo inappropriately.
 SoundCloud sources were made freely available by the respective artists who covered the songs.
-For Wikipedia audio, we believe this is fair-use as our project is used for educational purposes and licensed under a non-commercial license. 
-Anyway, we would be happy to remove the music samples in case you believe it is not fair-use.
+For Wikipedia audio, we believe this is fair-use as our project is used for non-commercial purposes and licensed under a non-commercial license. 
+Anyway, we would be happy to cooperative in case the music sample usage is found not be fair-use.
 
